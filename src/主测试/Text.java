@@ -1,58 +1,67 @@
 package 主测试;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+
 public class Text {
-	static int sum;
+	static int max=0;
+	static int min=0;
+	static int[] pong;
 	static int n;
-	static boolean pan=false;
 	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
-		n = sc.nextInt();
-		sum = sc.nextInt();
+		Scanner sc = new Scanner(System.in);
+		String[] line=sc.nextLine().split(" ");
+		pong=new int[line.length];
+		n=pong.length;
+		for (int i = 0; i < line.length; i++) {
+			pong[i] =Integer.valueOf(line[i]);
+		}
 		int[] arr=new int[n];
-		int[] view=new int[n];
+		Arrays.fill(arr, 0);
 		
-		dfs(0,arr,view);
-		
+		dfs(0,arr);
+		System.out.println(max);
+		System.out.println(min);
 	}
-	public static void dfs(int step,int[] arr,int[] view) {
-		
-		if(step==n){
-			int sumte=0;
-			int[] temp=new int[n];
-			for(int i=0;i<n;i++){//复制原数组进行累加计算sum
-				temp[i]=arr[i];
-			}
-			for (int j = 1; j <n; j++) {
-				for (int i = 0; i < n-1; i++) {
-					sumte+=arr[i];
+
+	public static void dfs(int k,int[] arr) {
+		if(k==n){
+			ArrayList<Integer> list=new ArrayList<Integer>();
+			for (int i = 0; i < arr.length; i++) {
+				if(arr[i]!=0){
+					list.add(arr[i]);
 				}
 			}
-			if(sumte==sum){
-				for (int i = 0; i < n; i++) {
-					System.out.print(arr[i]+" ");
+			boolean flagMa=false;
+			boolean flagMi=false;
+			for (int i = 0; i < list.size()-1; i++) {
+				if(list.get(i)<list.get(i+1)){
+					flagMa=true;
 				}
-				System.out.println();
-				//此时当前为最优解，所以可以return
-				pan=true;
-				return;
+			}
+			for (int i = 0; i < list.size()-1; i++) {
+				if(list.get(i)>list.get(i+1)){
+					flagMi=true;
+				}
+			}
+			if(flagMa==false){
+				if(max<list.size()){
+					max=list.size();
+				}
+			}
+			if(flagMi==false){
+				if(min<list.size()){
+					min=list.size();
+				}
 			}
 			
-			
+			return;
 		}
-		
-		if(pan==false){//判断是否找到解
-			for (int i = 1; i <=n; i++) {
-				if(view[i]==0){
-					arr[i]=i;
-					view[i]=1;
-					
-					dfs(step+1,arr,view);
-					view[i]=0;
-				}
-			}
-		}
-		
+		dfs(k+1,arr);
+		arr[k]=pong[k]; 
+		dfs(k+1,arr);
+		arr[k]=0;
 		
 	}
 }

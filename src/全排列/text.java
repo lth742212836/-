@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class text {
+	static int count=0;
 	static ArrayList<String> res = new ArrayList<String>();
 	public static void main(String[] args) {
 		String s="hello";
@@ -11,7 +12,7 @@ public class text {
 //		Arrays.sort(arr);
 		run(0,arr);
 		System.out.println(res);
-		
+		System.out.println(count);
 		
 	}
 	public static void run(int k,char[] arr){
@@ -21,6 +22,7 @@ public class text {
 //			}
 //			System.out.println();
 			res.add(new String(arr));
+			count++;
 		}
 		for (int i = k; i < arr.length; i++) {
 			swap(arr, k, i);//把后面每个字符换到k位
