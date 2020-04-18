@@ -22,6 +22,10 @@ public class 合法括号 {
     for (String s : parenthesis) {
       System.out.println(s);
     }
+    
+    Set<String> parenthesis1 = obj.parenthesis1(4);
+    System.out.println(parenthesis1.size());
+    
     // boolean b = obj.chkParenthesis("()a()()", 7);
     // System.out.println(b);
   }
@@ -57,7 +61,7 @@ public class 合法括号 {
       for (int i = 0; i < eOfN_1.length(); i++) {
         char c = eOfN_1.charAt(i);//每一个字符
         if (c == '(')//只要这个字符是左括号，我们就可以在其后插入一对括号
-          s_n.add(eOfN_1.substring(0, i + 1) + "()" + eOfN_1.substring(i + 1));
+          s_n.add(			eOfN_1.substring(0, i + 1) + "()" + eOfN_1.substring(i + 1)			);
       }
     }
     return s_n;
