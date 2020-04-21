@@ -1,4 +1,4 @@
-package 全排列;
+package 子集;
 
 import java.util.HashSet;
 import java.util.Set;

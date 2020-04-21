@@ -1,4 +1,4 @@
-package 全排列;
+package 子集;
 
 //import org.lanqiao.algo.elementary._06_math.Case11_NExponent;
 
