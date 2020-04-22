@@ -1,65 +1,60 @@
 package 主测试;
 
-
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
-
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = Integer.valueOf(sc.nextLine());
-        String str = sc.nextLine();
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        int max = 0;
-        String mstr = "";
-        for (int i = 0; i < str.length() - n + 1; i++) {
-            for (int j = i + n; j <= str.length(); j++) {
-                String temp = str.substring(i, j);
-                if (map.containsKey(temp)) {
-                    int value = map.get(temp);
-                    value++;
-                    if (value > max) {
-                        max = value;
-                        mstr = temp;
-                    } else {
-                        if (value == max) {
-                            if (mstr.length() < temp.length()) {
-                                mstr = temp;
-                            }
-                        }
-                    }
-                    map.put(temp, value);
-                }else{
-                    map.put(temp, 0);
-                }
 
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        long n = in.nextLong();
+        System.out.println(quickFib(n));
+    }
+
+    static long mod = 1000000007;
+    static long quickAdd(long a, long b) {
+        long ans = 0;
+        while(b > 0) {
+            if((b & 1) == 1) ans = (ans + a) % mod;
+            a = (a << 1) % mod;
+            b >>= 1;
+        }
+        return ans % mod;
+    }
+
+    static long[][] quickMulti(long[][] a, long[][] b) {
+        long[][] ans = new long[2][2];
+        long tmp = 0;
+        for(int i = 0; i < 2; i ++) {
+            for(int j = 0; j < 2; j ++) {
+                tmp = 0;
+                for(int k = 0; k < 2; k ++) {
+                    tmp = (tmp + quickAdd(a[i][k], b[k][j])) % mod;
+                }
+                ans[i][j] = tmp;
             }
         }
-        System.out.println(mstr);
+        return ans;
     }
+
+    static long[][] quickPow(long[][] a, long b) {
+        long[][] ans = new long[2][2];
+        ans[0][0] = ans[1][1] = 1;
+        ans[0][1] = ans[1][0] = 0;
+        while(b > 0) {
+            if((b & 1) == 1) ans = quickMulti(ans, a);
+            a = quickMulti(a, a);
+            b >>= 1;
+        }
+        return ans;
+    }
+
+    static long quickFib(long a) {
+        long[][] ans = new long[2][2];
+        long[][] tmp = new long[2][2];
+        tmp[0][0] = tmp[0][1] = tmp[1][0] = 1;
+        tmp[1][1] = 0;
+        ans = quickPow(tmp, a);
+        return ans[0][0] % mod;
+    }
+
 }
-/*
-给定一个长度为n的字符串S，还有一个数字L，统计长度大于等于L的出现次数最多的子串（不同的出现可以相交），如果有多个，输出最长的，如果仍然有多个，输出第一次出现最早的。
-输入格式
-　　第一行一个数字L。
-　　第二行是字符串S。
-　　L大于0，且不超过S的长度。
-输出格式
-　　一行，题目要求的字符串。
-
-　　输入样例1：
-　　4
-　　bbaabbaaaaa
-
-　　输出样例1：
-　　bbaa
-
-　　输入样例2：
-　　2
-　　bbaabbaaaaa
-
-　　输出样例2：
-　　aa
- */
