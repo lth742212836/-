@@ -1,12 +1,20 @@
 package 主测试;
 
 public class Text {
-	public static void main(String[] args) {
-		int a=2;
-		int b=-2;
+    public static void main(String[] args) {
+//        int temp='1'-'0';
+//        System.out.println(temp);
+        char arr='0';
+        for (int i = 0; i <= 9; i++) {
+            int temp;
+            System.out.println(arr);
+            System.out.println(arr+1);
+            arr= (char) ( arr+1);
 
-		a=a>>>1;
-		b=b>>>1;
-		System.out.println(a+" "+b);
-	}
+        }
+//        char arr2='9';
+//        System.out.println((int)arr);
+//        System.out.println((int)arr2);
+    }
+
 }
