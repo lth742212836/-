@@ -11,10 +11,11 @@ public class 奇异的虫群 {
     }
 
     static long mod = 1000000007;
+
     static long quickAdd(long a, long b) {
         long ans = 0;
-        while(b > 0) {
-            if((b & 1) == 1) ans = (ans + a) % mod;
+        while (b > 0) {
+            if ((b & 1) == 1) ans = (ans + a) % mod;
             a = (a << 1) % mod;
             b >>= 1;
         }
@@ -24,10 +25,10 @@ public class 奇异的虫群 {
     static long[][] quickMulti(long[][] a, long[][] b) {
         long[][] ans = new long[2][2];
         long tmp = 0;
-        for(int i = 0; i < 2; i ++) {
-            for(int j = 0; j < 2; j ++) {
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 2; j++) {
                 tmp = 0;
-                for(int k = 0; k < 2; k ++) {
+                for (int k = 0; k < 2; k++) {
                     tmp = (tmp + quickAdd(a[i][k], b[k][j])) % mod;
                 }
                 ans[i][j] = tmp;
@@ -40,8 +41,8 @@ public class 奇异的虫群 {
         long[][] ans = new long[2][2];
         ans[0][0] = ans[1][1] = 1;
         ans[0][1] = ans[1][0] = 0;
-        while(b > 0) {
-            if((b & 1) == 1) ans = quickMulti(ans, a);
+        while (b > 0) {
+            if ((b & 1) == 1) ans = quickMulti(ans, a);
             a = quickMulti(a, a);
             b >>= 1;
         }

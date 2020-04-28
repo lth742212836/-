@@ -1,9 +1,9 @@
-package 主测试;
+package Big;
 
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Main {
+public class 二元函数 {
     public static int a;
     public static int b;
 
@@ -11,6 +11,23 @@ public class Main {
         Scanner input = new Scanner(System.in);
         a = input.nextInt();
         b = input.nextInt();
+        /*
+        不用String str = input.next();的原因
+        nextLine的回车会被push到sta中
+        如：
+        Stack<String> sta=new Stack();
+		Scanner sc=new Scanner(System.in);
+		String str=sc.nextLine();
+		sta.push(str);
+		System.out.println(sta.size());
+		System.out.println(sta);
+		输入：//输入一个回车
+
+		会输出：
+            1
+            []
+        str中会包含回车
+         */
         String str = input.next();
 
         char chars[] = str.toCharArray();
