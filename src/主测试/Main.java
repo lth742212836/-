@@ -1,67 +1,58 @@
 package 主测试;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
-import java.util.Stack;
+import java.util.Set;
+
 
 public class Main {
-    public static int a;
-    public static int b;
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        a = input.nextInt();
-        b = input.nextInt();
-        String str = input.next();
+        Scanner sc = new Scanner(System.in);
 
-        char chars[] = str.toCharArray();
-        Stack<Integer> stack = new Stack<>();//借助栈来保存依次找到的数字字符
-        boolean flag = true;
-        for (int i = 0; i < chars.length; i++) {
-            if (chars[i] == '-') {
-                flag = false;
-            } else if (Character.isDigit(chars[i])) {//Character.isDigit()判断字符是否为数字
-                int num = 0;
-                for (; i < chars.length && Character.isDigit(chars[i]); i++) {
-                    num = num * 10 + Integer.parseInt(String.valueOf(chars[i]));//当数字字符连续时，将数字字符拼接成一个完整的数字
-                }
-                i--;
-                if (flag) {
-                    stack.push(num);//将num进栈
-                } else {
-                    stack.push(num * (-1));//将负num进栈
-                    flag = true;//将标志位置为true
-                }
-            } else if (chars[i] == ')') {
-                int y = stack.pop();
-                int x = stack.pop();
-                int r = counts(x, y);
-                stack.push(r);
-            }
-
+        int n = sc.nextInt();
+        if (n <= 0) {
+            System.out.println();
+            return;
         }
-        // f(f(10,20),f(30,40))
-        System.out.println(stack.pop());
+        int arr[] = new int[n];
+        int num[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+
+        for (int i = 0; i < n; i++) {
+            if (!list.contains(arr[i])) {
+                list.add(arr[i]);
+            }
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            int number = 0;
+            for (int j = 0; j < n; j++) {
+                if (arr[j] == list.get(i)) {
+                    number++;
+                }
+            }
+            map.put(list.get(i), number);
+        }
+        Set<Integer> set = map.keySet();
+
+        int max = 0;
+        int index = 0;
+        for (int i : set) {
+//System.out.println(i+":"+map.get(i));
+            if (map.get(i) > max) {
+                max = map.get(i);
+                index = i;
+            }
+        }
+        System.out.println(index);
+
     }
 
-    //a*x+b*y的值
-    public static int counts(int x, int y) {
-        return a * x + b * y;
-    }
 }
-/*
-问题描述
-　　令二元函数f(x,y)=ax+by，a和b为整数，求一个表达式S的值。
-　　只有满足以下要求的表达式才是合法的：
-　　1.任意整数x是一个合法的表达式；
-　　2.如果A和B都是合法的表达式，则f(A,B)也是一个合法的表达式。
-输入格式
-　　第一行两个数a和b；
-　　第二行一个字符串S表示要求的表达式。
-输出格式
-　　一行一个数表示表达式S的值。
-样例输入
-1 2
-f(1,f(1,-1))
-样例输出
--1
- */
