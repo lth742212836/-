@@ -1,6 +1,6 @@
-package 主测试;
+package Big;
 
-public class Main {
+public class 水仙花数 {
 
     public static void main(String[] args) {
         int a=0;
