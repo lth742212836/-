@@ -1,4 +1,4 @@
-package dfs;
+package 全排列;
 
 public class Dfs1 {
 	

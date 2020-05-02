@@ -1,4 +1,4 @@
-package dfs;
+package 子集;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -17,14 +17,17 @@ public class 合法括号 {
 
   public static void main(String[] args) {
 	  合法括号 obj = new 合法括号();
-    Set<String> parenthesis = obj.parenthesis1(4);
+    Set<String> parenthesis1 = obj.parenthesis1(4);
+    System.out.println(parenthesis1.size());
+    for (String s : parenthesis1) {
+      System.out.println(s);
+    }
+    
+    Set<String> parenthesis = obj.parenthesis(4);
     System.out.println(parenthesis.size());
     for (String s : parenthesis) {
       System.out.println(s);
     }
-    
-    Set<String> parenthesis1 = obj.parenthesis1(4);
-    System.out.println(parenthesis1.size());
     
     // boolean b = obj.chkParenthesis("()a()()", 7);
     // System.out.println(b);
