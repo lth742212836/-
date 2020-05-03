@@ -4,35 +4,35 @@ import java.util.Scanner;
 
 public class Anagrams单词 {
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        String str1=sc.next();
-        String str2=sc.next();
-        int[] arr=new int[92];
+        Scanner sc = new Scanner(System.in);
+        String str1 = sc.next();
+        String str2 = sc.next();
+        int[] arr = new int[92];
 
         String s1 = str1.toUpperCase();
         String s2 = str2.toUpperCase();
 //        System.out.println(s1);
-        if(s1.length()!=s2.length()){
+        if (s1.length() != s2.length()) {
             System.out.println("no");
-        }else {
+        } else {
             for (int i = 0; i < s1.length(); i++) {
-                int x=s1.charAt(i);
+                int x = s1.charAt(i);
                 arr[x]++;
             }
             for (int i = 0; i < s2.length(); i++) {
-                int y=s2.charAt(i);
+                int y = s2.charAt(i);
                 arr[y]--;
             }
-            int lead=-1;
+            int lead = -1;
             for (int i = 65; i < 92; i++) {
-                if(arr[i]!=0){
-                    lead=1;
+                if (arr[i] != 0) {
+                    lead = 1;
                     break;
                 }
             }
-            if(lead==-1){
+            if (lead == -1) {
                 System.out.println("yes");
-            }else{
+            } else {
                 System.out.println("no");
             }
         }
