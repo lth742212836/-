@@ -2,7 +2,7 @@ package 主测试;
 
 import java.util.Scanner;
 
-public class Main {
+public class Main2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int p = sc.nextInt();
@@ -11,13 +11,16 @@ public class Main {
         int[] ikind = new int[i];
         int[] pkind2 = new int[p];
         int[] ikind2 = new int[i];
+        int sum=0;
         for (int j = 0; j < p; j++) {
             pkind[j] = sc.nextInt();
             pkind2[j] = pkind[j];
+            sum+=pkind[j];
         }
         for (int j = 0; j < i; j++) {
             ikind[j] = sc.nextInt();
             ikind2[j] = ikind[j];
+            sum+=ikind[j];
         }
         double[][] price = new double[p][i];
         double[][] price2 = new double[p][i];
@@ -29,27 +32,14 @@ public class Main {
         }
         int x = 0;
         int y = 0;
+        int sum2=sum;
         double allMin = 0;
-        while (checkKind(pkind, ikind) == false) {
-            double minPrice = findMinPrice(price);
-            x = 0;
-            y = 0;
-
-            boolean temp = false;
-            //找到最低价格的坐标
-            for (int j = 0; j < price.length; j++) {
-                for (int k = 0; k < price[j].length; k++) {
-                    if (minPrice == price[j][k]) {
-                        x = j;
-                        y = k;
-                        temp = true;
-                        break;
-                    }
-                }
-                if (temp == true) {
-                    break;
-                }
-            }
+        while (sum!=0) {
+            double minPrice = findPrice(price,-1);
+            String dress = getDress(price2, minPrice);
+            String[] split = dress.split(" ");
+            x =Integer.valueOf(split[0]);
+            y =Integer.valueOf(split[1]);
             price[x][y] = -1.0;
             if (pkind[x] == 0 || ikind[y] == 0) {
                 continue;
@@ -60,29 +50,18 @@ public class Main {
             allMin += minPrice * min;
             pkind[x] = pkind[x] - min;
             ikind[y] = ikind[y] - min;
+            sum=sum-min*2;
         }
 
         double allMax = 0;
-        while (checkKind(pkind2, ikind2) == false) {
-            double maxPrice = findMaxPrice(price2);
-            x = 0;
-            y = 0;
+        while (sum2!=0) {
+            double maxPrice = findPrice(price2,1);
 
-            boolean temp = false;
-            //找到最高价格的坐标
-            for (int j = 0; j < price2.length; j++) {
-                for (int k = 0; k < price2[j].length; k++) {
-                    if (maxPrice == price2[j][k]) {
-                        x = j;
-                        y = k;
-                        temp = true;
-                        break;
-                    }
-                }
-                if (temp == true) {
-                    break;
-                }
-            }
+            String dress = getDress(price2, maxPrice);
+            String[] split = dress.split(" ");
+            x =Integer.valueOf(split[0]);
+            y =Integer.valueOf(split[1]);
+
             price2[x][y] = -1.0;
             if (pkind2[x] == 0 || ikind2[y] == 0) {
                 continue;
@@ -93,33 +72,41 @@ public class Main {
             allMax += maxPrice * min;
             pkind2[x] = pkind2[x] - min;
             ikind2[y] = ikind2[y] - min;
+            sum2=sum2-min*2;
         }
         System.out.println(String.format("%.2f", allMin) + " to " + String.format("%.2f", allMax));
 
     }
 
-    static boolean checkKind(int[] pkind, int[] ikind) {
-        for (int i = 0; i < pkind.length; i++) {
-            if (pkind[i] != 0) {
-                return false;//false为还有余货
-            }
-        }
-        for (int i = 0; i < ikind.length; i++) {
-            if (ikind[i] != 0) {
-                return false;//false为还有余货
-            }
-        }
-        return true;
-    }
 
-    //寻找最低价格
-    static double findMinPrice(double[][] price) {
-        double minPrice = 0;
+    static String getDress(double[][] price,double money){
+        int x = 0;
+        int y = 0;
+
+        boolean temp = false;
+        //找到最高价格的坐标
+        for (int j = 0; j < price.length; j++) {
+            for (int k = 0; k < price[j].length; k++) {
+                if (money == price[j][k]) {
+                    x = j;
+                    y = k;
+                    temp = true;
+                    break;
+                }
+            }
+            if (temp == true) {
+                break;
+            }
+        }
+        return Integer.toString(x)+" "+Integer.toString(y);
+    }
+    static double findPrice(double[][] price,int x) {//x=1,求最大，x=-1,求最小
+        double flag = 0;
         int temp = -1;
         for (int i = 0; i < price.length; i++) {
             for (int j = 0; j < price[i].length; j++) {
                 if (price[i][j] != -1 || price[i][j] != -1.0) {
-                    minPrice = price[i][j];
+                    flag = price[i][j];
                     temp = 1;
                     break;
                 }
@@ -128,46 +115,25 @@ public class Main {
                 break;
             }
         }
-        for (int i = 0; i < price.length; i++) {
-            for (int j = 0; j < price[i].length; j++) {
-                if (price[i][j] == -1 || price[i][j] == -1.0) {
-                    continue;
-                }
-                if (price[i][j] < minPrice && price[i][j] > 0) {
-                    minPrice = price[i][j];
-                }
-            }
-        }
-        return minPrice;
-    }
 
-    //寻找最高价格
-    static double findMaxPrice(double[][] price) {
-        double maxPrice = 0;
-        int temp = -1;
-        for (int i = 0; i < price.length; i++) {
-            for (int j = 0; j < price[i].length; j++) {
-                if (price[i][j] != -1 || price[i][j] != -1.0) {
-                    maxPrice = price[i][j];
-                    temp = 1;
-                    break;
-                }
-            }
-            if (temp == 1) {
-                break;
-            }
-        }
         for (int i = 0; i < price.length; i++) {
             for (int j = 0; j < price[i].length; j++) {
                 if (price[i][j] == -1 || price[i][j] == -1.0) {
                     continue;
                 }
-                if (price[i][j] > maxPrice && price[i][j] > 0) {
-                    maxPrice = price[i][j];
+                if(x==1){
+                    if (price[i][j] > flag && price[i][j] > 0 ) {
+                        flag = price[i][j];
+                    }
+                }else {
+                    if (price[i][j] < flag && price[i][j] > 0) {
+                        flag = price[i][j];
+                    }
                 }
+
             }
         }
-        return maxPrice;
+        return flag;
     }
 
 }

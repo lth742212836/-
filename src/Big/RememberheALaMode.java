@@ -1,8 +1,8 @@
-package 主测试;
+package Big;
 
 import java.util.Scanner;
 
-public class Main {
+public class RememberheALaMode {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int p = sc.nextInt();
