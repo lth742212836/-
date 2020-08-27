@@ -3,41 +3,44 @@ package 主测试;
 import java.util.Scanner;
 
 public class Main {
-    static int result=0;
-    static int n=0;
+
+    static int p;
+    static int max=0;
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        n=sc.nextInt();
-
-        int[][] arr=new int[n][n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < i+1; j++) {
-                arr[i][j]=sc.nextInt();
-            }
+        int n=sc.nextInt();//走廊的长度
+        p=sc.nextInt();//跳的最大距离
+        int x=sc.nextInt();//跳的次数
+        int[] wi=new int[n];
+        for (int i = 0; i < wi.length; i++) {
+            wi[i]=sc.nextInt();//每一格的权值
         }
+        dfs(wi,x,0,n);
+        System.out.println(max);
 
-        dfs(arr,0,0,arr[0][0]);
-        System.out.println(result);
 
     }
     /*
-        i       行
-        j       列
-        sum     当前方法的和
+        arr[]   权值数组
+        x       跳的次数
+        sum     权值和
+        n       走廊长度
+
      */
-    static void dfs(int[][] arr,int i,int j,int sum){
-        if(i==n-1 || j==n-1){
-            if(sum>result){
-                result=sum;
+    static void dfs(int[] wi,int x,int sum,int n){
+        if(x==0 || n==0){
+            if(max<sum){
+                max=sum;
             }
             return;
         }
 
-        //向下
-        dfs(arr,i+1,j,sum+arr[i+1][j]);
+        int temp=0;//跳跃格的权值和
+        for (int i = 1; i <= p; i++) {
+            temp+=wi[i];
+            dfs(wi,x-1,sum+temp,n-i);
+        }
 
-        //向右下
-        dfs(arr,i+1,j+1,sum+arr[i+1][j+1]);
     }
+
 }

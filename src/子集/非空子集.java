@@ -18,8 +18,8 @@ public class 非空子集 {
         int[] A = {1, 2, 3, 4, 5, 6};
         非空子集 obj = new 非空子集();
 
-        HashSet<HashSet<Integer>> subsets3 = obj.getSubsets3(A, A.length);
-        System.out.println(subsets3);
+//        HashSet<HashSet<Integer>> subsets3 = obj.getSubsets3(A, A.length);
+//        System.out.println(subsets3);
 
         HashSet<HashSet<Integer>> subsets2 = obj.getSubsets2(A, A.length);
         System.out.println(subsets2);
