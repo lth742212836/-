@@ -27,14 +27,15 @@ public class 不重叠的线段 {
 		
 		Scanner sc=new Scanner(System.in);
 		int n=sc.nextInt();
-		Node p[]=new Node[n];
+		Node p[]=new Node[n];//关于Node的数组
 		for(int i=0;i<n;i++) {
 			int left=sc.nextInt();
 			int right=sc.nextInt();
 			int val=sc.nextInt();
 			p[i]=new Node(left, right, val);
 		}
-		
+
+		//从小到大排序
 		Arrays.sort(p, new Comparator<Node>() {
 
 			@Override
