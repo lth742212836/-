@@ -6,14 +6,14 @@ public class _2的次幂表示 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int i = sc.nextInt();
-        dp(Integer.toBinaryString(i).toString());
+        dp(Integer.toBinaryString(i));//转化为二进制
 
     }
 
     static void dp(String arr) {
         for (int i = 0; i < arr.length(); i++) {
             if (arr.charAt(i) == '1') {//判断当前位是否为0，如果为0，直接跳过
-                if (i == arr.length() - 1) {//当为 "01"
+                if (i == arr.length() - 1) {//当为 "01",即到了当前数的最后一位1，转化为二进制为 2(0)
                     System.out.print("2(0)");
                 } else {
                     if (i == arr.length() - 2) {//当为 "1x"
@@ -27,7 +27,7 @@ public class _2的次幂表示 {
                         dp(Integer.toBinaryString(arr.length() - i - 1));
                         System.out.print(")");
 
-                        if(arr.substring(i+1).contains("1")){
+                        if(arr.substring(i+1).contains("1")){ //判断后面的数是否能继续进行
                             System.out.print("+");
                         }
                     }
