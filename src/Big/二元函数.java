@@ -12,7 +12,7 @@ public class 二元函数 {
         a = input.nextInt();
         b = input.nextInt();
         /*
-        不用String str = input.next();的原因
+        不用String str = input.nextLine();的原因
         nextLine的回车会被push到sta中
         如：
         Stack<String> sta=new Stack();

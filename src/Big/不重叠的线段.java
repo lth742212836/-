@@ -4,70 +4,73 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Scanner;
 
-class Node{
-	int left;
-	int right;
-	int val;
-	public Node(int left, int right, int val) {
-		super();
-		this.left = left;
-		this.right = right;
-		this.val = val;
-	}
-	@Override
-	public String toString() {
-		return "Node [left=" + left + ", right=" + right + ", val=" + val + "]";
-	}
-	
-	
+class Node {
+    int left;
+    int right;
+    int val;
+
+    public Node(int left, int right, int val) {
+        super();
+        this.left = left;
+        this.right = right;
+        this.val = val;
+    }
+
+    @Override
+    public String toString() {
+        return "Node [left=" + left + ", right=" + right + ", val=" + val + "]";
+    }
+
+
 }
+
 public class 不重叠的线段 {
-	
-	public static void main(String[] args) {
-		
-		Scanner sc=new Scanner(System.in);
-		int n=sc.nextInt();
-		Node p[]=new Node[n];//关于Node的数组
-		for(int i=0;i<n;i++) {
-			int left=sc.nextInt();
-			int right=sc.nextInt();
-			int val=sc.nextInt();
-			p[i]=new Node(left, right, val);
-		}
 
-		//从小到大排序
-		Arrays.sort(p, new Comparator<Node>() {
+    public static void main(String[] args) {
 
-			@Override
-			public int compare(Node o1, Node o2) {
-				if(o1.right>o2.right)
-					return 1;
-				else if(o1.right<o2.right)
-					return -1;
-				else
-				    return 0;
-			}
-		});
-		
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        Node p[] = new Node[n];//关于Node的数组
+        for (int i = 0; i < n; i++) {
+            int left = sc.nextInt();
+            int right = sc.nextInt();
+            int val = sc.nextInt();
+            p[i] = new Node(left, right, val);
+        }
+
+        //从小到大排序
+        Arrays.sort(p, new Comparator<Node>() {
+
+            @Override
+            public int compare(Node o1, Node o2) {
+                if (o1.right > o2.right)
+                    return 1;
+                else if (o1.right < o2.right)
+                    return -1;
+                else
+                    return 0;
+            }
+        });
+
 //		for(int i=0;i<n;i++)
 //			System.out.println(p[i].toString());
-		
-		int dp[]=new int[n];
-		
-		if(n>0)
-			dp[0]=p[0].val;
-		for(int i=1;i<n;i++) {
-			dp[i]=p[i].val;
-			for(int j=i-1;j>=0;j--) {
-				if(p[i].left<=p[j].right)
-					dp[i]=Math.max(dp[i],dp[j]);
-				else if(p[i].left>p[j].right) {
-					dp[i]=Math.max(dp[i], dp[j]+p[i].val);
-				}
-			}
-		}
-		System.out.println(dp[n-1]);
-	}
+
+        int dp[] = new int[n];
+
+        if (n > 0)
+            dp[0] = p[0].val;
+        for (int i = 1; i < n; i++) {
+            dp[i] = p[i].val;
+            for (int j = i - 1; j >= 0; j--) {
+                if (p[i].left <= p[j].right)
+                    dp[i] = Math.max(dp[i], dp[j]);
+                else if (p[i].left > p[j].right) {
+                    dp[i] = Math.max(dp[i], dp[j] + p[i].val);
+                }
+            }
+        }
+        System.out.println(dp[n - 1]);
+    }
 
 }
 /*
