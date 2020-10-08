@@ -31,10 +31,12 @@ public class 二元函数 {
         String str = input.next();
 
         char chars[] = str.toCharArray();
+        //stack栈后进先出
         Stack<Integer> stack = new Stack<>();//借助栈来保存依次找到的数字字符
+
         boolean flag = true;
         for (int i = 0; i < chars.length; i++) {
-            if (chars[i] == '-') {
+            if (chars[i] == '-') {//以此标记判断正负数
                 flag = false;
             } else if (Character.isDigit(chars[i])) {//Character.isDigit()判断字符是否为数字
                 int num = 0;
@@ -48,7 +50,7 @@ public class 二元函数 {
                     stack.push(num * (-1));//将负num进栈
                     flag = true;//将标志位置为true
                 }
-            } else if (chars[i] == ')') {
+            } else if (chars[i] == ')') {//将最后进入的两个数字进行计算
                 int y = stack.pop();
                 int x = stack.pop();
                 int r = counts(x, y);
@@ -56,7 +58,6 @@ public class 二元函数 {
             }
 
         }
-        // f(f(10,20),f(30,40))
         System.out.println(stack.pop());
     }
 
@@ -80,5 +81,5 @@ public class 二元函数 {
 1 2
 f(1,f(1,-1))
 样例输出
--1
+    -1
  */

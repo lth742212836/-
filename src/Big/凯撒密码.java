@@ -8,9 +8,9 @@ public class 凯撒密码 {
 		String s=sc.nextLine();
 		char[] arr=s.toCharArray();
 		for (int i = 0; i < arr.length; i++) {
-			arr[i]=(char)(arr[i]+3);
+			arr[i]=(char)(arr[i]+3);//往后位移三位
 			if(arr[i]>'z'){
-				arr[i]=(char)(arr[i]-'z'+'a');
+				arr[i]=(char)(arr[i]-'z'+'a');//超过	'x' 时进行处理
 			}
 		}
 		for (int i = 0; i < arr.length; i++) {
@@ -27,9 +27,9 @@ public class 凯撒密码 {
 输出格式
 　　输出一行，表示加密后的密文。
 样例输入
-lanqiao
+	lanqiao
 样例输出
-odqtldr
+	odqtldr
 评测用例规模与约定
 　　对于所有评测用例，单词中的字母个数不超过100。
 	 */

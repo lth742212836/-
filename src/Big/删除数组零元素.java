@@ -4,28 +4,23 @@ import java.util.Scanner;
 
 public class 删除数组零元素 {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        //储存非0数字
-        int[] arr = new int[n];
-        int tit=0;
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr=new int[n];
 
-        int temp=0;
-
-        int sum=0;//非0数字的个数
+        int count=0;
         for (int i = 0; i < n; i++) {
-            temp=sc.nextInt();
-            if(temp!=0){
-                arr[tit]=temp;
-                tit++;
-                sum++;
+            arr[i]=sc.nextInt();
+            if(arr[i]!=0){
+                count++;
             }
         }
 
-        //输出结果
-        System.out.println(sum);
-        for (int i = 0; i < tit; i++) {
-            System.out.print(arr[i]+" ");
+        System.out.println(count);
+        for (int i = 0; i < n; i++) {
+            if(arr[i]!=0){
+                System.out.print(arr[i]+" ");
+            }
         }
     }
 

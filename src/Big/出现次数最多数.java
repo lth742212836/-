@@ -11,17 +11,17 @@ public class 出现次数最多数 {
         for (int i = 0; i < n; i++) {
             arr[i][0] = sc.nextInt();
             for (int j = 0; j < i; j++) {
-                if (arr[i][0] == arr[j][0]) {
+                if (arr[i][0] == arr[j][0]) {//统计出现的次数，并通过二维数组，放在第一次出现数的值里
                     arr[j][1]++;
                     break;
                 }
             }
         }
-        int max = 0;
-        int down = 0;
+        int max = 0;//记录出现次数的最大值
+        int down = 0;//记录出现次数最大值对应的下标
         for (int i = 0; i < n; i++) {
-            if (max <= arr[i][1]) {
-                if (max == arr[i][1]) {
+            if (max <= arr[i][1]) {//判断当前次数是否为最大值
+                if (max == arr[i][1]) {//比较次数相同时，对应数字的大小
                     if (arr[down][0] < arr[i][0]) {
                         continue;
                     }
