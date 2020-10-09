@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int res = 1;
-        System.out.println(res != 0);
+        char x='c';
+        System.out.println(x-'a'+10);
     }
 
 

@@ -1,6 +1,7 @@
 package Big;
 
 /**
+ *      Nim游戏
  * 几个数字做模2的加法，如果为0，无论怎么拿结果都不为0 ，如果不为0 ，总有办法改变一个数字把它变成0
  * 011
  * 100
@@ -19,11 +20,14 @@ public class 取石子异或 {
         int res = 0;
         for (int i = 0; i < A.length; i++) {
             res ^= A[i];
-            // System.out.println(Integer.toBinaryString(A[i]));
         }
         return res != 0;
     }
 }
+/*
+    先手 : 非0  赢  (可以改变棋子，改变成0的局面)
+            0  输
+*/
 /*
 Nim游戏
 -共有N堆石子,编号1..n ,第i堆中有个a[]个石子。
