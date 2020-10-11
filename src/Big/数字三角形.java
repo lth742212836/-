@@ -4,22 +4,23 @@ import java.util.Scanner;
 
 public class 数字三角形 {
     public static void main(String[] args) {
-        Scanner reader = new Scanner(System.in);
-        int length = reader.nextInt();
+        Scanner sc = new Scanner(System.in);
+        int length = sc.nextInt();
         int[][] arr = new int[length][length];
+        //利用count记录输入的数字
         int count = 0;
         for (int i = 0; i < length; i++) {
             for (int j = 0; j <= count; j++) {
-                arr[i][j] = reader.nextInt();
+                arr[i][j] = sc.nextInt();
             }
             count++;
         }
         count = 1;
         for (int i = 1; i < length; i++) {
             for (int j = 0; j <= count; j++) {
-                if (j == 0) {
+                if (j == 0) {//对每一行的开头进行处理
                     arr[i][j] += arr[i - 1][j];
-                } else {
+                } else {//比较该数字的上放与左斜上方的数字大小，取最大值
                     if (arr[i - 1][j - 1] > arr[i - 1][j])
                         arr[i][j] += arr[i - 1][j - 1];
                     else
@@ -28,6 +29,7 @@ public class 数字三角形 {
             }
             count++;
         }
+        //在最后一行找出最大值
         int max = arr[length - 1][0];
         for (int i = 1; i < length; i++) {
             if (arr[length - 1][i] > max) {
@@ -42,7 +44,7 @@ public class 数字三角形 {
 资源限制
 时间限制：1.0s   内存限制：256.0MB
 问题描述
-　　（图３.１－１）示出了一个数字三角形。 请编一个程序计算从顶至底的某处的一条路
+　　一个数字三角形。 请编一个程序计算从顶至底的某处的一条路
 　　径，使该路径所经过的数字的总和最大。
 　　●每一步可沿左斜线向下或右斜线向下走；
 　　●1＜三角形行数≤100；

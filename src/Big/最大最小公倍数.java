@@ -3,8 +3,8 @@ package Big;
 import java.util.Scanner;
 
 public class 最大最小公倍数 {
-	//这是一个简单的贪心算法问题，解决此题，只需要明白一个数学关系
-	// 即当三个数互为质数时， 他们之积为最小公倍数
+    //这是一个简单的贪心算法问题，解决此题，只需要明白一个数学关系
+    // 即当三个数互为质数时， 他们之积为最小公倍数
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         long n = sc.nextInt();
