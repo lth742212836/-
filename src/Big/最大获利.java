@@ -3,47 +3,47 @@ package Big;
 import java.util.Scanner;
 
 public class 最大获利 {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int n = sc.nextInt();
-		int m = sc.nextInt();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
 
-		long[][] waiter = new long[n][m];
-		long[][] god = new long[n][m];
-		long[][] money = new long[n][m];
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				waiter[i][j] = sc.nextInt();
-			}
-		}
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				god[i][j] = sc.nextInt();
-			}
-		}
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < m; j++) {
-				money[i][j] = sc.nextInt();
-			}
-		}
-		long max = 0;
-		long all = 0;
-		for (int i = 0; i < n; i++) {
-			max = 0;
-			for (int j = 0; j < m; j++) {
-				long sum = (Math.min(waiter[i][j], god[i][j])) * money[i][j];
-				if (max < sum) {
-					max = sum;
-				}
-			}
-			all += max;
+        long[][] waiter = new long[n][m];
+        long[][] god = new long[n][m];
+        long[][] money = new long[n][m];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                waiter[i][j] = sc.nextInt();
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                god[i][j] = sc.nextInt();
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                money[i][j] = sc.nextInt();
+            }
+        }
+        long max = 0;
+        long all = 0;
+        for (int i = 0; i < n; i++) {
+            max = 0;
+            for (int j = 0; j < m; j++) {
+                long sum = (Math.min(waiter[i][j], god[i][j])) * money[i][j];
+                if (max < sum) {
+                    max = sum;
+                }
+            }
+            all += max;
 
-		}
-		System.out.println(all);
+        }
+        System.out.println(all);
 
-	}
+    }
 /*
- * 题描述
+ *
 　　Chakra是一位年轻有为的企业家，最近他在进军餐饮行业。他在各地开拓市场，共买下了N个饭店。
 * 在初期的市场调研中，他将一天划分为M个时间段，并且知道第i个饭店在第j个时间段内，
 * 会有Aij位服务员当值和Bij位客户光临。他还分析了不同饭店不同时间段客户的需求，

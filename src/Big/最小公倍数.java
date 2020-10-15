@@ -8,23 +8,22 @@ public class 最小公倍数 {
         Scanner in = new Scanner(System.in);
         int a = in.nextInt();
         int b = in.nextInt();
-        lcm(a,b);
+        lcm(a, b);
 
     }
 
-    private static  void lcm(int a, int b) {
+    private static void lcm(int a, int b) {
         int min = a;
-        int p=1;
-        if(min>b)
+        int p = 1;
+        if (min > b)
             min = b;
         for (int i = 2; i < min; i++) {
-            if(a%i==0&&b%i==0)
-            {
-                p=i;
+            if (a % i == 0 && b % i == 0) {
+                p = i;
                 break;
             }
         }
-        int q = (a*b)/p;
+        int q = (a * b) / p;
         System.out.print(q);
     }
 }
@@ -34,8 +33,7 @@ public class 最小公倍数 {
     样例输入
     一个满足题目要求的输入范例。
     例：
-
-    3 5
+        3 5
     样例输出
     与上面的样例输入对应的输出。
     例：

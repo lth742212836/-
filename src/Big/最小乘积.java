@@ -6,38 +6,38 @@ import java.util.Scanner;
 
 public class 最小乘积 {
     public static void main(String[] args) {
-            Scanner sc = new Scanner(System.in);
-            int t = sc.nextInt();
-            int[] result = new int[t];//结果数组
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        int[] result = new int[t];//结果数组
 
-            for (int i = 0; i < t; i++) {
-                int n = sc.nextInt();
-                int[] one = new int[n];
-                Integer[] two = new Integer[n];
+        for (int i = 0; i < t; i++) {
+            int n = sc.nextInt();
+            int[] one = new int[n];
+            Integer[] two = new Integer[n];
 
-                for (int j = 0; j < n; j++) {
-                    one[j] = sc.nextInt();
-                }
-                for (int j = 0; j < n; j++) {
-                    two[j] = sc.nextInt();
-                }
-
-                //给输入的数组排序
-                Arrays.sort(one);//升序
-                Arrays.sort(two, Collections.reverseOrder());//降序
-
-                //计算
-                int sum = 0;
-                for (int j = 0; j < n; j++) {
-                    sum += one[j] * two[j];
-                }
-
-                result[i] = sum;
+            for (int j = 0; j < n; j++) {
+                one[j] = sc.nextInt();
+            }
+            for (int j = 0; j < n; j++) {
+                two[j] = sc.nextInt();
             }
 
-            for (int i = 0; i < t; i++) {
-                System.out.println(result[i]);
+            //给输入的数组排序
+            Arrays.sort(one);//升序
+            Arrays.sort(two, Collections.reverseOrder());//降序
+
+            //计算
+            int sum = 0;
+            for (int j = 0; j < n; j++) {
+                sum += one[j] * two[j];
             }
+
+            result[i] = sum;
+        }
+
+        for (int i = 0; i < t; i++) {
+            System.out.println(result[i]);
+        }
     }
 
 }
