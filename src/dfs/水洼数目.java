@@ -38,41 +38,41 @@ W.W.W.....W.
 
  */
 public class 水洼数目 {
-  private static int n;
-  private static int m;
+    private static int n;
+    private static int m;
 
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
-    n = sc.nextInt();
-    m = sc.nextInt();
-    char[][] a = new char[n][];
-    for (int i = 0; i < n; i++) {
-      a[i] = sc.next().toCharArray();
-    }
-    int cnt = 0;
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
-        if (a[i][j] == 'W') {
-          dfs(a, i, j);//清除一个水洼
-          cnt++;
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        n = sc.nextInt();
+        m = sc.nextInt();
+        char[][] a = new char[n][];
+        for (int i = 0; i < n; i++) {
+            a[i] = sc.next().toCharArray();
         }
-      }
-    }
-    System.out.println(cnt);
-  }
-
-  private static void dfs(char[][] a, int i, int j) {
-    a[i][j] = '.';
-
-    for (int k = -1; k < 2; k++) {//-1,0,1
-      for (int l = -1; l < 2; l++) {//-1,0,1
-        if (k == 0 && l == 0) continue;
-
-        if (i + k >= 0 && i + k <= n - 1 && j + l >= 0 && j + l <= m - 1) {
-          if (a[i + k][j + l] == 'W')
-            dfs(a, i + k, j + l);
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (a[i][j] == 'W') {
+                    dfs(a, i, j);//清除一个水洼
+                    cnt++;
+                }
+            }
         }
-      }
+        System.out.println(cnt);
     }
-  }
+
+    private static void dfs(char[][] a, int i, int j) {
+        a[i][j] = '.';
+
+        for (int k = -1; k < 2; k++) {//-1,0,1
+            for (int l = -1; l < 2; l++) {//-1,0,1
+                if (k == 0 && l == 0) continue;
+
+                if (i + k >= 0 && i + k <= n - 1 && j + l >= 0 && j + l <= m - 1) {
+                    if (a[i + k][j + l] == 'W')
+                        dfs(a, i + k, j + l);
+                }
+            }
+        }
+    }
 }
